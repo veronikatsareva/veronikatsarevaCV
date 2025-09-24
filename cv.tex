@@ -26,7 +26,7 @@
 %----------------------------------------------------------------------------------------
 
 % article class because we want to fully customize the page and not use a cv template
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,10pt]{article}
 
 %----------------------------------------------------------------------------------------
 %	FONT
@@ -56,6 +56,10 @@
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage[scale=0.9]{geometry}
 
+%package for Russsian language
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
 %tabularx environment
 \usepackage{tabularx}
 
@@ -79,14 +83,14 @@
 %CV Sections inspired by: 
 %http://stefano.italians.nl/archives/26
 \titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
-\titlespacing{\section}{0pt}{10pt}{10pt}
+\titlespacing{\section}{0pt}{10pt}{5pt}
 
 %for publications
 \usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
 
 %Setup hyperref package, and colours for links
 \usepackage[unicode, draft=false]{hyperref}
-\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\definecolor{linkcolour}{rgb}{0.7,0,0.25}
 \hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
 \addbibresource{citations.bib}
 \setlength\bibitemsep{1em}
@@ -97,31 +101,14 @@
 %debug page outer frames
 %\usepackage{showframe}
 
+% skill box
+\usepackage{tcolorbox}
+\newtcbox{\xmybox}[1][red]{on line,
+arc=7pt,colback=#1!10!white,colframe=#1!50!black,
+before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt,
+boxsep=0pt,left=6pt,right=6pt,top=2pt,bottom=1pt}
 
-% job listing environments
-\newenvironment{jobshort}[2]
-    {
-    \begin{tabularx}{\linewidth}{@{}l X r@{}}
-    \textbf{#1} & \hfill &  #2 \\[3.75pt]
-    \end{tabularx}
-    }
-    {
-    }
-
-\newenvironment{joblong}[2]
-    {
-    \begin{tabularx}{\linewidth}{@{}l X r@{}}
-    \textbf{#1} & \hfill &  #2 \\[3.75pt]
-    \end{tabularx}
-    \begin{minipage}[t]{\linewidth}
-    \begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt,label=--]
-    }
-    {
-    \end{itemize}
-    \end{minipage}    
-    }
-
-
+%----------------------------------------------------------
 
 %----------------------------------------------------------------------------------------
 %	BEGIN DOCUMENT
@@ -135,19 +122,63 @@
 %	TITLE
 %----------------------------------------------------------------------------------------
 
-% \begin{tabularx}{\linewidth}{ @{}X X@{} }
-% \huge{Your Name}\vspace{2pt} & \hfill \emoji{incoming-envelope} email@email.com \\
-% \raisebox{-0.05\height}\faGithub\ username \ | \
-% \raisebox{-0.00\height}\faLinkedin\ username \ | \ \raisebox{-0.05\height}\faGlobe \ mysite.com  & \hfill \emoji{calling} number
-% \end{tabularx}
 
 \begin{tabularx}{\linewidth}{@{} C @{}}
-\Huge{Your Name} \\[7.5pt]
-\href{https://github.com/username}{\raisebox{-0.05\height}\faGithub\ username} \ $|$ \ 
-\href{https://linkedin.com/in/username}{\raisebox{-0.05\height}\faLinkedin\ username} \ $|$ \ 
-\href{https://mysite.com}{\raisebox{-0.05\height}\faGlobe \ mysite.com} \ $|$ \ 
-\href{mailto:email@mysite.com}{\raisebox{-0.05\height}\faEnvelope \ email@mysite.com} \ $|$ \ 
-\href{tel:+000000000000}{\raisebox{-0.05\height}\faMobile \ +00.00.000.000} \\
+\Huge{Вероника Царева} \\[7.5pt]
+\href{https://github.com/veronikatsareva}{\raisebox{-0.05\height}\faGithub\ veronikatsareva} \ $|$ \ 
+\href{mailto:vveronikatsareva@yandex.ru}{\raisebox{-0.05\height}\faEnvelope \ vveronikatsareva@yandex.ru} \ $|$ \ 
+\href{https://t.me/fromdeath2morning}{\raisebox{-0.05\height}\faTelegram \ @fromdeath2morning} \
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION
+%----------------------------------------------------------------------------------------
+\section{Образование}
+\begin{tabularx}{\linewidth}{@{}l X@{}}	
+\textbf{НИУ ВШЭ, Москва} & \hfill \normalsize Сентябрь 2022 –– н.в.\\
+<<Фундаментальная и компьютерная лингвистика>>, бакалавриат. & \hfill \normalsize GPA: 8.53 / 10
+\end{tabularx}
+
+\underline{Релевантные курсы:} Математический анализ и линейная алгебра (9/10), Теория вероятностей и математическая статистика (8/10), Программирование: веб-сервисы и основы автоматической обработки языка (10/10), Автоматическая обработка естественного языка (10/10), Введение в анализ данных для гуманитарных и социальных наук на R (9/10), Анализ данных для лингвистов (10/10).
+
+%----------------------------------------------------------------------------------------
+% PROJECT SECTIONS
+%----------------------------------------------------------------------------------------
+\section{Проекты}
+
+\begin{tabularx}{\linewidth}{ @{}l r@{} }
+
+\textbf{Balanced Language Sampling for Multilingual Models | 2025 | Исследовательский проект} & \hfill \href{https://github.com/veronikatsareva/BalancedLanguageSampling}{Ссылка на GitHub} \\ [1.75pt]
+\xmybox[purple]{Python} \xmybox[purple]{mBERT} \xmybox[purple]{NLP} \\ [3.75pt]
+\multicolumn{2}{@{}X@{}}{A term paper that analyzes the results of the mBERT depending on the language sample (balanced/unbalanced) was used.} \\ [5.75pt]
+
+\textbf{MedCorpora | 2024 | Групповой проект} & \hfill \href{https://github.com/veronikatsareva/MedCorpora}{Ссылка на GitHub}  \\ [1.75pt]
+\xmybox[purple]{Python} \xmybox[purple]{Stanza} \xmybox[purple]{NLP} \\ [3.75pt]
+\multicolumn{2}{@{}X@{}}{Веб-сайт, поддерживающий поиск по автоматически размеченному по частям речи корпусу медицинских новостей.} \\ [5.75pt]
+
+\textbf{Organization's Network Graph | 2024 | Индивидуальный проект} & \hfill \href{https://github.com/veronikatsareva/math4ling-lab-1}{Ссылка на GitHub} \\[1.75pt]
+\xmybox[purple]{Python} \xmybox[purple]{Networkx} \xmybox[purple]{NLP} \\ [3.75pt]
+\multicolumn{2}{@{}X@{}}{Построение графа социальной сети по названиям организаций из текстов новостей и подсчет степени посредничества.} \\ [5.75pt]
+
+\textbf{PROTOtypes | 2024 | Индивидуальный проект} & \hfill \href{https://github.com/veronikatsareva/FlaskPrototypesApp}{Ссылка на GitHub} \\[1.75pt]
+\xmybox[purple]{Python} \xmybox[purple]{HTML} \xmybox[purple]{CSS} \xmybox[purple]{Graphs} \\ [3.75pt]
+\multicolumn{2}{@{}X@{}}{Веб-сайт, собирающий прототипические сущности среди носителей русского языка с помощью анкеты.} \\ [5.75pt]
+
+\textbf{CuteCodeBot | 2023 | Групповой проект} & \hfill \href{https://gitlab.com/veronikatsareva/cute-code-bot}{Ссылка на GitLab} \\[1.75pt]
+\xmybox[purple]{Python} \xmybox[purple]{API}  \\ [3.75pt]
+\multicolumn{2}{@{}X@{}}{Телеграм-бот, кодирующий и декодирующий сообщения с использованием четырех шифров.} \\  [5.75pt]
+
+\end{tabularx}
+
+%----------------------------------------------------------------------------------------
+%	SKILLS
+%----------------------------------------------------------------------------------------
+\section{Навыки}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+Языки &  \normalsize{Python, C\texttt{++}, R}\\
+Иностранные языки  &  \normalsize{Английский язык (С1), Немецкий язык (B1)}\\  
+Библиотеки & \normalsize{NumPy, Pandas, Plotly, Sklearn, SciPy, NLTK}\\
+Технологии & \normalsize{Git, \LaTeX, MS Excel, SQL}\\
 \end{tabularx}
 
 %----------------------------------------------------------------------------------------
@@ -155,63 +186,46 @@
 %----------------------------------------------------------------------------------------
 
 %Interests/ Keywords/ Summary
-\section{Summary}
-This CV can also be automatically complied and published using GitHub Actions. For details, \href{https://github.com/jitinnair1/autoCV}{click here}.
+%\section{Summary}
+%This CV can also be automatically complied and published using GitHub Actions. For details, \href{https://github.com/jitinnair1/autoCV}{click here}.
 
 %Experience
-\section{Work Experience}
-
-\begin{jobshort}{Designation}{Jan 2021 - present}
-long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width
-\end{jobshort}
-
-
-\begin{joblong}{Designation}{Mar 2019 - Jan 2021}
-\item long long line of blah blah that will wrap when the table fills the column width
-\item again, long long line of blah blah that will wrap when the table fills the column width but this time even more long long line of blah blah. again, long long line of blah blah that will wrap when the table fills the column width but this time even more long long line of blah blah
-\end{joblong}
-  
-%Projects
-\section{Projects}
+\section{Опыт работы}
 
 \begin{tabularx}{\linewidth}{ @{}l r@{} }
-\textbf{Some Project} & \hfill \href{https://some-link.com}{Link to Demo} \\[3.75pt]
-\multicolumn{2}{@{}X@{}}{long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width}  \\
+
+\textbf{НИУ ВШЭ | Учебный ассистент} & \hfill Сентябрь 2023 –– н.в. \\ [1.75pt]
+\multicolumn{2}{@{}X@{}}{Курс: <<Программирование и лингвистические данные>> 
+
+\underline{Обязанности:} проведение онлайн-консультаций по вопросам учебной программы, составление задач для контрольных работ, проверка домашних заданий на плагиат в Яндекс.Контесте, заполнение ведомостей.}  \\
 \end{tabularx}
 
 %----------------------------------------------------------------------------------------
-%	EDUCATION
+% OTHER ACTIVITIES
 %----------------------------------------------------------------------------------------
-\section{Education}
-\begin{tabularx}{\linewidth}{@{}l X@{}}	
-2030 - present & PhD (Subject) at \textbf{University} \hfill \normalsize (GPA: 4.0/4.0) \\
 
-2023 - 2027 & Bachelor's Degree at \textbf{College} \hfill (GPA: 4.0/4.0) \\ 
+%Other Activities
+\section{Внеучебная деятельность}
 
-2022 & Class 12th Some Board \hfill  (Grades) \\
+\begin{tabularx}{\linewidth}{ @{}l r@{} }
+\textbf{Репетитор по информатике и программированию на Python} & \hfill 2024 –– н.в. \\[3.75pt]
 
-2021 & Class 10th Some Board \hfill  (Grades) \\
+\textbf{Участница <<Баттла вузов. Кубок Y\&\&Y>> (Турнир по программированию среди студентов)} & \hfill 2024 –– 2025 \\[3.75pt]
+
+\textbf{Куратор НИУ ВШЭ | ОП <<Фундаментальная и компьютерная лингвистика>>} & \hfill 2023 –– 2024 \\ [3.75pt]
+
 \end{tabularx}
 
 %----------------------------------------------------------------------------------------
 %	PUBLICATIONS
 %----------------------------------------------------------------------------------------
-\section{Publications}
-\begin{refsection}[citations.bib]
-\nocite{*}
-\printbibliography[heading=none]
-\end{refsection}
+% \section{Publications}
+% \begin{refsection}[citations.bib]
+% \nocite{*}
+% \printbibliography[heading=none]
+% \end{refsection}
 
-%----------------------------------------------------------------------------------------
-%	SKILLS
-%----------------------------------------------------------------------------------------
-\section{Skills}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-Some Skills &  \normalsize{This, That, Some of this and that etc.}\\
-Some More Skills  &  \normalsize{Also some more of this, Some more that, And some of this and that etc.}\\  
-\end{tabularx}
-
-\vfill
-\center{\footnotesize Last updated: \today}
+% \vfill
+% \center{\footnotesize Last updated: \today}
 
 \end{document}
